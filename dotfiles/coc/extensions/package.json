@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "coc-pairs": ">=1.5.2",
+    "coc-git": ">=2.7.7",
+    "coc-json": ">=1.9.3",
+    "coc-cmake": ">=0.2.2",
+    "coc-css": ">=2.1.0",
+    "coc-flutter": ">=1.9.10",
+    "coc-clangd": ">=0.32.0",
+    "coc-html": ">=1.8.0",
+    "coc-lua": ">=2.0.6",
+    "coc-nix": ">=0.0.2",
+    "coc-prettier": ">=11.0.1"
+  }
+}
