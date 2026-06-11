@@ -16,7 +16,7 @@
 
 	packages = with pkgs; [
 		firefox
-		discord
+		vesktop	
 		spotify
 		alacritty
 		tmux
