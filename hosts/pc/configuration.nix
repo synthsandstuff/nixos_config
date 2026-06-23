@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, inputs, ... }:
 
 {
@@ -30,6 +26,7 @@
 
   # Set your time zone.
   time.timeZone = "Europe/London";
+  time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -113,6 +110,8 @@
 	package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   };
+
+  programs.ssh.startAgent = true;
 
   programs.neovim = {
 	enable = true;

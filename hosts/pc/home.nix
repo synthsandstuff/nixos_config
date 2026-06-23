@@ -46,27 +46,13 @@
 		hyprpaper
 		anki
 		unzip
+		wl-clipboard
   	];
 
   	sessionVariables = {
   		EDITOR = "nvim";
   	};
 
-  	file = {
-		".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/alacritty";
-		".config/btop".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/btop";
-		".config/cava".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/cava";
-		".config/coc".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/coc";
-		".config/efm-langserver".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/efm-langserver";
-		".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/hypr";
-		".config/kicad".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/kicad";
-		".config/neofetch".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/neofetch";
-		".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/nvim";
-		".config/tmux".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/tmux"; 
-		"Wallpapers".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/wallpapers";
-		".local/share/nvim/site/autoload".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/vim-plug";
-  	};
   };
-
   programs.home-manager.enable = true;
 }
