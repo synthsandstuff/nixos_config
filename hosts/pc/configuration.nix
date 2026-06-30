@@ -1,125 +1,28 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+	imports = [
       ./hardware-configuration.nix
-	inputs.home-manager.nixosModules.default
-    ];
+	  ./software.nix
+	];
+	
+	networking.hostName = "devan-nixpc"; # Define your hostname.
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+	system.stateVersion = "25.05"; # Did you read the comment?
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+	services.xserver.videoDrivers = ["nvidia"];
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/London";
-  time.hardwareClockInLocalTime = true;
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.devan = {
-    isNormalUser = true;
-    description = "Devan Eatch";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
-  };
-
-  home-manager = {
-	extraSpecialArgs =  { inherit inputs; };
-	users = {
-		"devan" = import ./home.nix;
-	};
-	useGlobalPkgs = true;
-  };
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  nixpkgs.config.allowUnfree = true;
-
-  programs.hyprland.enable = true;
-
-  environment.systemPackages = with pkgs; [
-  ];
-
-
-  services.openssh.enable = true;
-
-  system.stateVersion = "25.05"; # Did you read the comment?
-  hardware.graphics = {
-  	enable = true;
-  };
-
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  security.rtkit.enable = true;
-
-  services.pulseaudio.enable = false;
-
-  services.pipewire = {
-  	enable = true;
-	alsa = {
+	services.hardware.openrgb = {
 		enable = true;
-		support32Bit = true;
-		};
-	jack.enable = true;
-	pulse.enable = true;
-  };
+		motherboard = "amd";
+	};
 
-  hardware.nvidia = {
-	powerManagement.enable = false;
-	powerManagement.finegrained = false;
-	open = false;
+	hardware.nvidia = {
+		powerManagement.enable = false;
+		powerManagement.finegrained = false;
+		open = false;
 
-	nvidiaSettings = true;
-	package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-  };
-
-  programs.ssh.startAgent = true;
-
-  programs.neovim = {
-	enable = true;
-	defaultEditor = true;
-  };
-
-  programs.fish.enable = true;
-  users.users.devan.shell = pkgs.fish;
-
+		nvidiaSettings = true;
+		package = config.boot.kernelPackages.nvidiaPackages.stable;
+	};
 }
-
