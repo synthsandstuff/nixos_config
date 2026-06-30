@@ -10,5 +10,6 @@
 		plex-desktop
 		lua
 		clang-tools
+        karere
 	];
 }

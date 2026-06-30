@@ -21,6 +21,7 @@
 		grim
 		slurp
 		swappy
+        nodejs
 	];
 
 	programs.hyprland.enable = true;
