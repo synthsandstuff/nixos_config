@@ -1,7 +1,8 @@
 { config, pkgs, ...}:
 
 {
-	packages = with pkgs; [
+	environment.systemPackages = with pkgs; [
+		blender
 		kicad
 		cmake
 		gcc
