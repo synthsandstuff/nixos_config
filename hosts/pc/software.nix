@@ -11,6 +11,5 @@
 		lua
 		clang-tools
         karere
-        rpi-imager
 	];
 }
